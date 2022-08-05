@@ -19,5 +19,4 @@ public interface DepartmentSerice {
 
     public void deleteDepartmentById(Long departmentId);
 
-    public 
 }

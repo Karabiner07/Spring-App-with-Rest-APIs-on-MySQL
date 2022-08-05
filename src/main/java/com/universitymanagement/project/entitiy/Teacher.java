@@ -23,7 +23,7 @@ public class Teacher {
 
     @OneToOne(
             fetch = FetchType.EAGER,
-            cascade = CascadeType.ALL,
+            //cascade = CascadeType.ALL,
             optional = false
     )
     @JoinColumn(

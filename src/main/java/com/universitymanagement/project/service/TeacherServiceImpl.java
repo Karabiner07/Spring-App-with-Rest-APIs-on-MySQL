@@ -24,26 +24,7 @@ public class TeacherServiceImpl implements TeacherService{
     @Override
     public Teacher saveTeacher(Teacher teacher) {
 
-        Department tDEP = teacher.getDepartment();
-
-        Teacher dupTeacher = new Teacher();
-
-
-        if (departmentRepository.findById(tDEP.getDepartmentId()).isEmpty()) {
-            teacherRepository.save(teacher);
-        }
-        if (departmentRepository.findById(tDEP.getDepartmentId()).isPresent()) {
-
-            dupTeacher.setTeacherId(teacher.getTeacherId());
-            dupTeacher.setTeacherName(teacher.getTeacherName());
-            dupTeacher.setTeacherSalary(teacher.getTeacherSalary());
-            dupTeacher.setEmailId(teacher.getEmailId());
-
-            dupTeacher.setDepartment(departmentRepository.findById(tDEP.getDepartmentId()).get());
-
-            teacherRepository.save(dupTeacher);
-        }
-        return teacher;
+        return teacherRepository.save(teacher);
     }
 
     @Override
@@ -60,8 +41,6 @@ public class TeacherServiceImpl implements TeacherService{
     public void deleteTeacherById(Long teacherId) {
 
         teacherRepository.deleteById(teacherId);
-        teacherRepository.findAll();
     }
-
 
 }
