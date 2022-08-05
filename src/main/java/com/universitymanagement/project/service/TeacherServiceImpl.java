@@ -60,7 +60,6 @@ public class TeacherServiceImpl implements TeacherService{
     public void deleteTeacherById(Long teacherId) {
 
         teacherRepository.deleteById(teacherId);
-        teacherRepository.saveAll();
     }
 
 
