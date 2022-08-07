@@ -1,6 +1,5 @@
 package com.universitymanagement.project.service;
 
-import com.universitymanagement.project.entitiy.Department;
 import com.universitymanagement.project.entitiy.Teacher;
 import com.universitymanagement.project.repository.DepartmentRepository;
 import com.universitymanagement.project.repository.TeacherRepository;
