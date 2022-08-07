@@ -1,11 +1,16 @@
 package com.universitymanagement.project.entitiy;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -21,9 +26,7 @@ public class Teacher {
     private String emailId;
 
 
-    @OneToOne(
-            fetch = FetchType.EAGER,
-            //cascade = CascadeType.ALL,
+    @ManyToOne(
             optional = false
     )
     @JoinColumn(
@@ -31,6 +34,7 @@ public class Teacher {
             referencedColumnName = "departmentId",
             nullable = false
     )
+    @JsonIgnoreProperties("teacher")
     private Department department;
 
 

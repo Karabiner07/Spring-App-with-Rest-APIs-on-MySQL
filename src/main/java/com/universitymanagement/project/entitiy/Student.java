@@ -44,11 +44,11 @@ public class Student {
     private Gaurdian gaurdian;
 
     @ManyToOne(
-        optional = false
+            optional = false
     )
     @JoinColumn(
-        name = "department_id",
-        referencedColumnName =  "departmentId"
+            name = "department_id",
+            referencedColumnName =  "departmentId"
     )
     private Department department;
 
