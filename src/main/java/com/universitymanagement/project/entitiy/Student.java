@@ -43,5 +43,13 @@ public class Student {
     @Embedded
     private Gaurdian gaurdian;
 
+    @ManyToOne(
+        optional = false
+    )
+    @JoinColumn(
+        name = "department_id",
+        referencedColumnName =  "departmentId"
+    )
+    private Department department;
 
 }

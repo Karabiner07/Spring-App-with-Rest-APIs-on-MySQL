@@ -1,6 +1,8 @@
 package com.universitymanagement.project.service;
 
+import com.universitymanagement.project.entitiy.Department;
 import com.universitymanagement.project.entitiy.Student;
+import com.universitymanagement.project.repository.DepartmentRepository;
 import com.universitymanagement.project.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,9 @@ import java.util.Objects;
 public class StudentServiceImpl implements StudentService{
     @Autowired
     private StudentRepository studentRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Override
     public Student saveStudent(Student student) {
@@ -35,21 +40,34 @@ public class StudentServiceImpl implements StudentService{
 
     @Override
     public Student updateStudentById(Long studentId, Student student) {
+
+        Department DEP = student.getDepartment();
+
         Student s = studentRepository.findById(studentId).get();
 
-        if(Objects.nonNull(student.getEmailId()) &&
-                !"".equalsIgnoreCase(student.getEmailId())) {
-            s.setEmailId(student.getEmailId());
-        }
 
-        if(Objects.nonNull(student.getFirstName()) &&
-                !"".equalsIgnoreCase(student.getFirstName())) {
-            s.setFirstName(student.getFirstName());
+        if(studentRepository.findById(studentId).isEmpty()) {
+            studentRepository.save(student);
         }
+        if(studentRepository.findById(studentId).isPresent()){
+            if(Objects.nonNull(student.getEmailId()) &&
+                    !"".equalsIgnoreCase(student.getEmailId())) {
+                s.setEmailId(student.getEmailId());
+            }
 
-        if(Objects.nonNull(student.getLastName()) &&
-                !"".equalsIgnoreCase(student.getLastName())) {
-            s.setLastName(student.getLastName());
+            if(Objects.nonNull(student.getFirstName()) &&
+                    !"".equalsIgnoreCase(student.getFirstName())) {
+                s.setFirstName(student.getFirstName());
+            }
+
+            if(Objects.nonNull(student.getLastName()) &&
+                    !"".equalsIgnoreCase(student.getLastName())) {
+                s.setLastName(student.getLastName());
+            }
+
+            if(departmentRepository.findById(DEP.getDepartmentId()).isPresent()){
+                s.setDepartment(DEP);
+            }
         }
         return studentRepository.save(s);
     }
