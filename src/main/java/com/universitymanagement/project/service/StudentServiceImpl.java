@@ -1,6 +1,7 @@
 package com.universitymanagement.project.service;
 
 import com.universitymanagement.project.entitiy.Department;
+import com.universitymanagement.project.entitiy.Gaurdian;
 import com.universitymanagement.project.entitiy.Student;
 import com.universitymanagement.project.repository.DepartmentRepository;
 import com.universitymanagement.project.repository.StudentRepository;
@@ -43,6 +44,8 @@ public class StudentServiceImpl implements StudentService{
 
         Department DEP = student.getDepartment();
 
+        Gaurdian GAR = student.getGaurdian();
+
         Student s = studentRepository.findById(studentId).get();
 
 
@@ -65,6 +68,9 @@ public class StudentServiceImpl implements StudentService{
                 s.setLastName(student.getLastName());
             }
 
+            if(Objects.nonNull(student.getGaurdian())){
+                s.setGaurdian(GAR);
+            }
             if(departmentRepository.findById(DEP.getDepartmentId()).isPresent()){
                 s.setDepartment(DEP);
             }

@@ -1,6 +1,7 @@
 package com.universitymanagement.project.service;
 
 import com.universitymanagement.project.entitiy.Department;
+import com.universitymanagement.project.entitiy.Student;
 
 import java.util.List;
 
@@ -13,10 +14,13 @@ public interface DepartmentSerice {
 
     public Department fetchDepartmentById(Long departmentId);
 
-    public Department fetchDepartmentByCode(Long departmentCode);
+
+    Department fetchDepartmentByCode(Long departmentCode);
 
     public Department updateDepartmentById(Long departmentId, Department department);
 
     public void deleteDepartmentById(Long departmentId);
+
+
 
 }

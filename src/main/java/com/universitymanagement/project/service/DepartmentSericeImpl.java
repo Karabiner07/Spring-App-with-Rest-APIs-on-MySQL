@@ -66,12 +66,12 @@ public class DepartmentSericeImpl implements DepartmentSerice{
             }
 
             if(teacherRepository.findById(teacher.getTeacherId()).isEmpty()){
-                DEP.setTeacher(department.getTeacher());
+                DEP.setTeacher(teacher);
             }
 
             if(teacherRepository.findById(teacher.getTeacherId()).isPresent()){
                 if(Objects.nonNull(department.getTeacher())){
-                    DEP.setTeacher(department.getTeacher());
+                    DEP.setTeacher(teacher);
                 }
             }
         }

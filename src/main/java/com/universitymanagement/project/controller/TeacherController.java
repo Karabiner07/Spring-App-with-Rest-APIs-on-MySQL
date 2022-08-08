@@ -29,6 +29,12 @@ public class TeacherController {
         return teacherService.fetchTeacherById(teacherId);
     }
 
+    @PutMapping("/Teacher/{id}")
+    public Teacher updateTeacherByTeacherId(@PathVariable("id") Long teacherId,
+                                            @RequestBody Teacher teacher){
+        return teacherService.updateTeacherByTeacherId(teacherId, teacher);
+    }
+
     @DeleteMapping("/Teacher/{id}")
     public String deleteTeacherById(@PathVariable("id") Long teacherId){
         teacherService.deleteTeacherById(teacherId);

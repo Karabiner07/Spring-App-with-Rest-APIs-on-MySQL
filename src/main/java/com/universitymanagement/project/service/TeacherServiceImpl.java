@@ -1,5 +1,6 @@
 package com.universitymanagement.project.service;
 
+import com.universitymanagement.project.entitiy.Department;
 import com.universitymanagement.project.entitiy.Teacher;
 import com.universitymanagement.project.repository.DepartmentRepository;
 import com.universitymanagement.project.repository.TeacherRepository;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 
 @Service
@@ -17,8 +19,6 @@ public class TeacherServiceImpl implements TeacherService{
 
     @Autowired
     private DepartmentRepository departmentRepository;
-
-
 
     @Override
     public Teacher saveTeacher(Teacher teacher) {
@@ -36,9 +36,42 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
-    public void deleteTeacherById(Long teacherId) {
+    public Teacher updateTeacherByTeacherId(Long teacherId, Teacher teacher) {
 
-        teacherRepository.deleteById(teacherId);
+        Department DEP = teacher.getDepartment();
+
+        Teacher t = teacherRepository.findById(teacherId).get();
+
+        if(teacherRepository.findById(teacherId).isEmpty()){
+            teacherRepository.save(teacher);
+        }
+        if(teacherRepository.findById(teacherId).isPresent()){
+
+            if(Objects.nonNull(teacher.getTeacherId())){
+                t.setTeacherId(teacher.getTeacherId());
+            }
+            if(Objects.nonNull(teacher.getTeacherName()) && !"".equalsIgnoreCase(teacher.getTeacherName())) {
+                t.setTeacherName(teacher.getTeacherName());
+            }
+            if(Objects.nonNull(teacher.getTeacherSalary())) {
+                t.setTeacherSalary(teacher.getTeacherSalary());
+            }
+
+            if(departmentRepository.findById(DEP.getDepartmentId()).isEmpty()){
+                t.setDepartment(DEP);
+            }
+            if(departmentRepository.findById(DEP.getDepartmentId()).isPresent()){
+                if(Objects.nonNull(teacher.getDepartment())){
+                    t.setDepartment(DEP);
+                }
+            }
+        }
+        return teacherRepository.save(t);
     }
 
+
+    @Override
+    public void deleteTeacherById(Long teacherId) {
+        teacherRepository.deleteById(teacherId);
+    }
 }

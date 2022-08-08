@@ -12,5 +12,9 @@ public interface TeacherService {
 
    public Teacher fetchTeacherById(Long teacherId);
 
+   public Teacher updateTeacherByTeacherId(Long teacherId, Teacher teacher);
+
    public void deleteTeacherById(Long teacherId);
+
+
 }
