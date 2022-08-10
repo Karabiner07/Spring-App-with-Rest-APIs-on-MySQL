@@ -1,17 +1,14 @@
 package com.universitymanagement.project.entitiy;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,9 +22,7 @@ public class Department {
     private String departmentName;
     private String departmentCode;
 
-    @OneToOne(
-            optional = false
-    )
+    @OneToOne
     @JoinColumn(
             name = "hod_id",
             referencedColumnName = "teacherId"
@@ -35,4 +30,9 @@ public class Department {
 //    @JsonIgnoreProperties("department")
     @JsonBackReference
     private Teacher teacher;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "departmentList")
+    private List<Subject> subjectList;
+
 }

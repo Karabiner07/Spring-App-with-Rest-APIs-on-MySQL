@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Data
@@ -18,11 +19,19 @@ public class Subject {
     private Long subjectId;
     private String subjectName;
 
-//    @ManyToMany
-//    @JoinColumn(
-//
-//    )
-//    private Department department;
+    @ManyToMany
+    @JoinTable(
+        name = "department_subject_map",
+        joinColumns = @JoinColumn(
+                name = "subject_id",
+                referencedColumnName = "subjectId"
+        ),
+        inverseJoinColumns = @JoinColumn(
+                name = "department_id",
+                referencedColumnName = "departmentId"
+        )
+    )
+    private List<Department> departmentList;
 
 }
 

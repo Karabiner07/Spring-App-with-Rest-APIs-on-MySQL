@@ -16,4 +16,6 @@ public interface SubjectService {
     public Subject updateSubjectById(Long subjectId, Subject subject);
 
     public void deleteSubjectByID(Long subjectId);
+
+    public Subject assignDepartmentToSubject(Long subjectId, Long departmentId);
 }

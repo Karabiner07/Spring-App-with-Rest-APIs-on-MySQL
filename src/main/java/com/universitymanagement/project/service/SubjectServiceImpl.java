@@ -1,10 +1,11 @@
 package com.universitymanagement.project.service;
 
+import com.universitymanagement.project.entitiy.Department;
 import com.universitymanagement.project.entitiy.Subject;
+import com.universitymanagement.project.repository.DepartmentRepository;
 import com.universitymanagement.project.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 
 import java.util.List;
 import java.util.Objects;
@@ -14,6 +15,9 @@ public class SubjectServiceImpl implements SubjectService{
 
     @Autowired
     private SubjectRepository subjectRepository;
+
+    @Autowired
+    private DepartmentRepository departmentRepository;
 
     @Override
     public Subject saveSubject(Subject subject) {
@@ -50,7 +54,21 @@ public class SubjectServiceImpl implements SubjectService{
     }
 
     @Override
+    public Subject assignDepartmentToSubject(Long subjectId, Long departmentId) {
+
+        List<Department> departmentList = null;
+        Subject subject = subjectRepository.findById(subjectId).get();
+        Department department = departmentRepository.findById(departmentId).get();
+        departmentList = subject.getDepartmentList();
+        departmentList.add(department);
+        subject.setDepartmentList(departmentList);
+        return subjectRepository.save(subject);
+    }
+
+    @Override
     public void deleteSubjectByID(Long subjectId) {
         subjectRepository.deleteById(subjectId);
     }
+
+
 }

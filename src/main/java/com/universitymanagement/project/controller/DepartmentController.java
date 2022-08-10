@@ -1,7 +1,6 @@
 package com.universitymanagement.project.controller;
 
 import com.universitymanagement.project.entitiy.Department;
-import com.universitymanagement.project.entitiy.Student;
 import com.universitymanagement.project.service.DepartmentSerice;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
