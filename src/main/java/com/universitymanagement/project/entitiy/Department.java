@@ -2,6 +2,8 @@ package com.universitymanagement.project.entitiy;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIncludeProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,7 +29,8 @@ public class Department {
             name = "hod_id",
             referencedColumnName = "teacherId"
     )
-//    @JsonIgnoreProperties("department")
+    @JsonIgnoreProperties("department")
+    @JsonIncludeProperties("teacherId")
     @JsonBackReference
     private Teacher teacher;
 

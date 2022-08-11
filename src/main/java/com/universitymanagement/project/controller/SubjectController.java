@@ -13,9 +13,15 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    @PostMapping("/Subjects")
+    @PostMapping("/Subject")
     public Subject saveSubject(@RequestBody Subject subject) {
         return subjectService.saveSubject(subject);
+    }
+
+    @PostMapping("/subject/{subjectId}/department/{departmentId}")
+    public Subject assignDepartmentToSubject(@PathVariable Long subjectId,
+                                             @PathVariable Long departmentId){
+        return subjectService.assignDepartmentToSubject(subjectId, departmentId);
     }
 
     @GetMapping("/Subjects")
@@ -32,12 +38,6 @@ public class SubjectController {
     public Subject updateSubjectById(@PathVariable("id") Long subjectId,
                                      @RequestBody Subject subject) {
         return subjectService.updateSubjectById(subjectId, subject);
-    }
-
-    @PutMapping("/{subjectId}/department/{departmentId}")
-    public Subject assignDepartmentToSubject(@PathVariable Long subjectId,
-                                             @PathVariable Long departmentId){
-        return subjectService.assignDepartmentToSubject(subjectId, departmentId);
     }
 
     @DeleteMapping("/Subject/{id}")

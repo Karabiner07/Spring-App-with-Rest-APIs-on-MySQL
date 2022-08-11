@@ -37,7 +37,4 @@ public class Teacher {
     @JsonManagedReference
     private Department department;
 
-
-
-
 }

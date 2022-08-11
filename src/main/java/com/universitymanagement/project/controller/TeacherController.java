@@ -40,7 +40,4 @@ public class TeacherController {
         teacherService.deleteTeacherById(teacherId);
         return "Teacher " +teacherId +" Deleted Successfully";
     }
-
-
-
 }

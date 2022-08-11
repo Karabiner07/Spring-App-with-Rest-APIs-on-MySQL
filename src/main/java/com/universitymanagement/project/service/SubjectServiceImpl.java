@@ -49,6 +49,9 @@ public class SubjectServiceImpl implements SubjectService{
             if(Objects.nonNull(subject.getSubjectName()) && !"".equalsIgnoreCase(subject.getSubjectName())) {
                 subj.setSubjectName(subject.getSubjectName());
             }
+            if(Objects.nonNull(subject.getDepartmentList())){
+                subj.setDepartmentList(subject.getDepartmentList());
+            }
         }
     return subjectRepository.save(subj);
     }
@@ -56,10 +59,10 @@ public class SubjectServiceImpl implements SubjectService{
     @Override
     public Subject assignDepartmentToSubject(Long subjectId, Long departmentId) {
 
-        List<Department> departmentList = null;
         Subject subject = subjectRepository.findById(subjectId).get();
         Department department = departmentRepository.findById(departmentId).get();
-        departmentList = subject.getDepartmentList();
+        List<Department> departmentList = subject.getDepartmentList();
+
         departmentList.add(department);
         subject.setDepartmentList(departmentList);
         return subjectRepository.save(subject);

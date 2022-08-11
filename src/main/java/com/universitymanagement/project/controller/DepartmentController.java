@@ -14,7 +14,7 @@ public class DepartmentController {
     private DepartmentSerice departmentSerice;
 
     @PostMapping("/Departments")
-    public Department saveDepartment(@RequestBody Department department){
+    public Department saveDepartment(@RequestBody Department department) {
         return departmentSerice.saveDepartment(department);
     }
 
@@ -24,20 +24,19 @@ public class DepartmentController {
     }
 
     @GetMapping("/Department/Id/{id}")
-    public Department fetchDepartmentById(@PathVariable("id") Long departmentId){
+    public Department fetchDepartmentById(@PathVariable("id") Long departmentId) {
         return departmentSerice.fetchDepartmentById(departmentId);
     }
 
     @PutMapping("/Department/{id}")
     public Department updateDepartmentById(@PathVariable("id") Long departmentId,
-                                           @RequestBody Department department){
+                                           @RequestBody Department department) {
         return departmentSerice.updateDepartmentById(departmentId, department);
     }
 
     @DeleteMapping("/Department/{id}")
-    public String deleteDepartmentById(@PathVariable("id") Long departmentId){
+    public String deleteDepartmentById(@PathVariable("id") Long departmentId) {
         departmentSerice.deleteDepartmentById(departmentId);
-        return "Department " +departmentId +" deleted successfully";
+        return "Department " + departmentId + " deleted successfully";
     }
-
 }
