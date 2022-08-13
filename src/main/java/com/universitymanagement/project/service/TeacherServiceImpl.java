@@ -36,6 +36,20 @@ public class TeacherServiceImpl implements TeacherService{
     }
 
     @Override
+    public Teacher fetchTeacherByEmailId(String emailId) {
+        return teacherRepository.findByEmailId(emailId);
+    }
+
+    @Override
+    public Teacher getHodByDepartment(Long departmentId) {
+        Department DEP =  departmentRepository.findById(departmentId).get();
+
+        Teacher t = DEP.getTeacher();
+
+        return teacherRepository.findById(t.getTeacherId()).get();
+    }
+
+    @Override
     public Teacher updateTeacherByTeacherId(Long teacherId, Teacher teacher) {
 
         Department DEP = teacher.getDepartment();

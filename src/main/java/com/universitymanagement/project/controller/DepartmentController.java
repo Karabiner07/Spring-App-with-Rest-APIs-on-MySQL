@@ -28,6 +28,16 @@ public class DepartmentController {
         return departmentSerice.fetchDepartmentById(departmentId);
     }
 
+    @GetMapping("/Department/Code/{code}")
+    public Department getDepartmentByDepartmentCode(@PathVariable("code") String departmentCode){
+        return departmentSerice.getDepartmentByDepartmentCode(departmentCode);
+    }
+
+    @GetMapping("/Department/HodId/{hodId}")
+    public Department getDepartmentByHodId(@PathVariable("hodId") Long HodId){
+        return  departmentSerice.getDepartmentByHodId(HodId);
+    }
+
     @PutMapping("/Department/{id}")
     public Department updateDepartmentById(@PathVariable("id") Long departmentId,
                                            @RequestBody Department department) {

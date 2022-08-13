@@ -29,6 +29,16 @@ public class TeacherController {
         return teacherService.fetchTeacherById(teacherId);
     }
 
+    @GetMapping("/Teacher/emailId/{email}")
+    public Teacher fetchTeacherByEmailId(@PathVariable("email") String emailId){
+        return  teacherService.fetchTeacherByEmailId(emailId);
+    }
+
+    @GetMapping("/Hod/Department/{departmentId}")
+    public Teacher getHodByDepartmentId(@PathVariable("departmentId") Long departmentId ){
+        return teacherService.getHodByDepartment(departmentId);
+    }
+
     @PutMapping("/Teacher/{id}")
     public Teacher updateTeacherByTeacherId(@PathVariable("id") Long teacherId,
                                             @RequestBody Teacher teacher){

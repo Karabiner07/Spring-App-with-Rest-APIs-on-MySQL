@@ -36,8 +36,13 @@ public class DepartmentSericeImpl implements DepartmentSerice{
     }
 
     @Override
-    public Department fetchDepartmentByCode(Long departmentCode) {
-        return departmentRepository.findByDepartmentCode(departmentCode);
+    public Department getDepartmentByDepartmentCode(String departmentCode) {
+        return departmentRepository.getDepartmentByDepartmentCode(departmentCode);
+    }
+
+    @Override
+    public Department getDepartmentByHodId(Long hodId) {
+        return departmentRepository.getDepartmentByHodId(hodId);
     }
 
     @Override

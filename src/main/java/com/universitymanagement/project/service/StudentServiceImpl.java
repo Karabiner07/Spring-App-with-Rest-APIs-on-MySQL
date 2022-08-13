@@ -71,8 +71,10 @@ public class StudentServiceImpl implements StudentService{
             if(Objects.nonNull(student.getGaurdian())){
                 s.setGaurdian(GAR);
             }
-            if(departmentRepository.findById(DEP.getDepartmentId()).isPresent()){
-                s.setDepartment(DEP);
+            if(Objects.nonNull(student.getDepartment())){
+                if(departmentRepository.findById(DEP.getDepartmentId()).isPresent()){
+                    s.setDepartment(DEP);
+                }
             }
         }
         return studentRepository.save(s);
